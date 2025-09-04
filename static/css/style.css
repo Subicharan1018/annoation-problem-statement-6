@@ -1,0 +1,360 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #1e293b;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+/* Main layout */
+main {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 20px;
+    min-height: 70vh;
+}
+
+/* Upload section */
+.upload-section {
+    grid-column: 1 / -1;
+    margin-bottom: 20px;
+}
+
+.upload-area {
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f8fafc;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: #3b82f6;
+    background-color: #f0f9ff;
+}
+
+.upload-area.dragover {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+    transform: scale(1.02);
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.upload-icon {
+    width: 48px;
+    height: 48px;
+    color: #64748b;
+}
+
+.upload-content p {
+    color: #64748b;
+    font-size: 1.1rem;
+}
+
+/* Workspace */
+.workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Toolbar */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+}
+
+.tool-group {
+    display: flex;
+    gap: 8px;
+}
+
+.tool-btn, .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    color: #475569;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: 40px;
+}
+
+.tool-btn svg, .action-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.tool-btn:hover, .action-btn:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.tool-btn.active {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+}
+
+.action-btn.primary {
+    background-color: #059669;
+    border-color: #059669;
+    color: white;
+}
+
+.action-btn.primary:hover {
+    background-color: #047857;
+    border-color: #047857;
+}
+
+/* Canvas area */
+.canvas-container {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.canvas-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#annotationCanvas {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.canvas-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    color: #94a3b8;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.canvas-placeholder svg {
+    width: 64px;
+    height: 64px;
+}
+
+.canvas-placeholder p {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-section {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+}
+
+.sidebar-section h3 {
+    background: #f8fafc;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.image-list, .annotation-list {
+    padding: 16px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.properties-panel {
+    padding: 20px;
+}
+
+.properties-panel label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.properties-panel input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.properties-panel input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.empty-state {
+    color: #94a3b8;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Image and annotation items */
+.image-item, .annotation-item {
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #f8fafc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.image-item:hover, .annotation-item:hover {
+    background: #f1f5f9;
+}
+
+.image-item.active, .annotation-item.active {
+    background: #dbeafe;
+    border-color: #3b82f6;
+}
+
+.image-item h4, .annotation-item h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #1e293b;
+}
+
+.image-item p, .annotation-item p {
+    font-size: 12px;
+    color: #64748b;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        order: -1;
+    }
+    
+    .toolbar {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .tool-group {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .tool-btn, .action-btn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .upload-area {
+        padding: 30px 15px;
+    }
+}
+
+/* Custom scrollbar */
+.image-list::-webkit-scrollbar, .annotation-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.image-list::-webkit-scrollbar-track, .annotation-list::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.image-list::-webkit-scrollbar-thumb, .annotation-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.image-list::-webkit-scrollbar-thumb:hover, .annotation-list::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}

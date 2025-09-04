@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Annotation Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Image Annotation Tool</h1>
+            <p>Upload images and create annotations with bounding boxes and polygons</p>
+        </header>
+
+        <main>
+            <!-- File Upload Section -->
+            <section class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        <p>Drag & drop images here or click to browse</p>
+                        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Workspace -->
+            <section class="workspace">
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <div class="tool-group">
+                        <button class="tool-btn active" id="selectTool" data-tool="select">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+                            </svg>
+                            Select
+                        </button>
+                        <button class="tool-btn" id="boxTool" data-tool="box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            </svg>
+                            Draw Box
+                        </button>
+                        <button class="tool-btn" id="polygonTool" data-tool="polygon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            Draw Polygon
+                        </button>
+                    </div>
+                    <div class="tool-group">
+                        <button class="action-btn" id="clearBtn">Clear All</button>
+                        <button class="action-btn primary" id="saveBtn">Save Annotation</button>
+                    </div>
+                </div>
+
+                <!-- Canvas Area -->
+                <div class="canvas-container">
+                    <div class="canvas-wrapper" id="canvasWrapper">
+                        <canvas id="annotationCanvas" width="800" height="600"></canvas>
+                        <div class="canvas-placeholder" id="canvasPlaceholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="14" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21,15 16,10 5,21"/>
+                            </svg>
+                            <p>Upload an image to start annotating</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3>Images</h3>
+                    <div class="image-list" id="imageList">
+                        <p class="empty-state">No images uploaded yet</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Annotations</h3>
+                    <div class="annotation-list" id="annotationList">
+                        <p class="empty-state">No annotations created yet</p>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Properties</h3>
+                    <div class="properties-panel">
+                        <label for="annotationLabel">Label:</label>
+                        <input type="text" id="annotationLabel" placeholder="Enter label...">
+                        
+                        <label for="annotationColor">Color:</label>
+                        <input type="color" id="annotationColor" value="#ff0000">
+                        
+                        <label for="annotationOpacity">Opacity:</label>
+                        <input type="range" id="annotationOpacity" min="0" max="100" value="50">
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
